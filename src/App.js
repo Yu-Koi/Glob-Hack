@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import { auth } from "./BackEnd/firebase";
 import CreateAccount from "./Components/CreateAccount.jsx";
 import Home from "./Components/Home.jsx";
 import Login from "./Components/Login.jsx";
@@ -13,6 +14,21 @@ import MapEnd from "./Components/MapEnd";
 import Admin from "./Components/Admin";
 
 function App() {
+
+  const [firebaseUser, setfirebaseUser] = React.useState(false)
+
+  React.useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      console.log(user)
+      if(user){
+        setfirebaseUser(user)
+      }
+    })
+
+  }, [])
+
+
+
   return (
    <div>
       <Router>

@@ -1,31 +1,22 @@
-import React from 'react'
+import React from "react";
 import { auth, db } from "../BackEnd/firebase";
 import { Link, withRouter } from "react-router-dom";
-import Logo from '../img/logo.png'
+import Logo from "../img/logo.png";
 
 const CreateAccount = (props) => {
   const [email, setEmail] = React.useState("");
   const [name, setName] = React.useState("");
-  const [rut, setRut] = React.useState("");
   const [prevision, setPrevision] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState(null);
-  // const [register, setRegister] = React.useState(true);
-
 
   const processingData = (e) => {
-    
     e.preventDefault();
 
     if (!name.trim()) {
       console.log("Ingrese Nombre");
       setError("Ingrese Nombre");
-      return;
-    }
-    if (!rut.trim()) {
-      console.log("Rut no valido");
-      setError("Rut no valido");
       return;
     }
     if (!email.trim()) {
@@ -51,7 +42,7 @@ const CreateAccount = (props) => {
         email: res.user.email,
         uid: res.user.uid,
         name: name,
-        rut: rut,
+        rut: password,
         phone: phone,
         prevision: prevision,
       });
@@ -59,7 +50,7 @@ const CreateAccount = (props) => {
       setEmail("");
       setPassword("");
       setPhone("");
-      setRut("");
+
       setError(null);
       props.history.push("/map");
 
@@ -74,119 +65,104 @@ const CreateAccount = (props) => {
         setError("Email ya utilizado");
       }
     }
-  }, [name, rut, phone, prevision, email, password, props.history]);
+  }, [name, phone, prevision, email, password, props.history]);
 
-
-    return (
-
-     
-            
-  
-        <div>
-            
-            <form onSubmit={processingData}>
-            {error && <div>{error}</div>}
-             <div className="container">
-             <img className="Logo" alt="" src={Logo} />
-            <div className="row ">
+  return (
+    <div>
+      <form onSubmit={processingData}>
+        {error && <div>{error}</div>}
+        <div className="container">
+          <img className="Logo" alt="" src={Logo} />
+          <div className="row ">
             <div className="col-sm-12 mt-5">
               <label>Nombre</label>
-              </div>
+            </div>
           </div>
-          
-          
+
           <input
             type="text"
             placeholder="Juan Pérez Pérez"
             name="name"
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
-          
-            <div className="row">
+
+          <div className="row">
             <div className="col-sm-12 mt-5">
-          <label>Rut paciente</label>
-          </div>
+              <label>Rut paciente</label>
+            </div>
           </div>
           <div className="row">
             <div className="col-sm-12 mt-5">
-          <input className="date"
-          type="num" 
-          placeholder="12.345.678-9" 
-          value={rut}
-          onChange={e => setRut(e.target.value)}
-          />
-          </div>
+              <input
+                className="date"
+                type="num"
+                placeholder="12.345.678-9"
+                name="rut"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
           </div>
           <div className="row">
-          <div className="col-sm-12 mt-5">
-          <label>Previsión de salud del paciente</label>
+            <div className="col-sm-12 mt-5">
+              <label>Previsión de salud del paciente</label>
+            </div>
           </div>
-          </div>
-          <select className="Prevension" onChange={e => setPrevision( e.target.value)}>
+          <select
+            className="Prevension"
+            onChange={(e) => setPrevision(e.target.value)}
+          >
             <option value="select"></option>
             <option value="fonasa">Fonasa</option>
             <option value="isapre">Isapre</option>
           </select>
 
           <div className="row">
-          <div className="col-sm-12 mt-5">
-          </div><label>Teléfono cuidador o paciente</label>
+            <div className="col-sm-12 mt-5"></div>
+            <label>Teléfono cuidador o paciente</label>
           </div>
-          <input 
-          type="num" 
-          placeholder="+56"
-          value={phone}
-          onChange={e => setPhone(e.target.value)}
+          <input
+            type="num"
+            placeholder="+56"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
           />
 
           <div className="row">
-          <div className="col-sm-12 mt-5">
-          <label>Correo cuidador o paciente</label>
-          </div>
+            <div className="col-sm-12 mt-5">
+              <label>Correo cuidador o paciente</label>
+            </div>
           </div>
           <input
             type="email"
             placeholder="juanperezprez@gmail.com"
             name="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          
-          <div className="row">
-          <div className="col-sm-12 mt-5"></div>
-          <label>Rut</label>
-          </div>
-          
-          <input 
-            type="password"
-            placeholder="******"
-            name="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
 
-           <div className="row">
+          <div className="row">
             <div className="col-sm-12 mt-5">
-            <button onClick={() => registerAccount()} type="button" className="Button">
-          Continuar
-        </button>
-          <div className="row">
-            <div className="col-sm-12 mt-5"></div>
-          <Link to="/Login">
-          <button bgcolor="true">¿ya estas registrado?</button>
-        </Link>
+              <button
+                onClick={() => registerAccount()}
+                type="button"
+                className="Button"
+              >
+                Continuar
+              </button>
+              <div className="row">
+                <div className="col-sm-12 mt-5"></div>
+                <Link to="/Login">
+                  <button bgcolor="true">¿ya estas registrado?</button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-          </div>
-          </div>
-          </div>
-          
-          
-
       </form>
-        </div>
-    )
-}
-
+    </div>
+  );
+};
 
 export default withRouter(CreateAccount);

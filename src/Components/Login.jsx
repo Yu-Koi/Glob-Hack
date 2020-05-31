@@ -32,7 +32,9 @@ const Login = (props) => {
 
   return (
     <div>
-      <h1>Login</h1>
+      <header className="headerLogin">
+        <h1>Login</h1>
+      </header>
 
       <form>
         {error && <div>{error}</div>}

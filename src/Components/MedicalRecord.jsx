@@ -84,17 +84,19 @@ const MedicalRecord = (props) => {
 
   return (
     <Fragment>
-        <header className="headerHome">
+        <header className="headerMedical">
           <h1>Ficha Médica</h1>
         </header>
       
 
       <div className="container">
-        <form onSubmit={saveData} className="form-group col-md-6">
-          <div className="col-sm-12 mt-5">
+        <form onSubmit={saveData} className="form-group col-sm-12">
+        <div className="row">
+          <div className="col-sm-12 ">
             <label>Nombre paciente</label>
           </div>
           <div>
+          </div>
 
             <input
             className="form-control"
@@ -104,11 +106,12 @@ const MedicalRecord = (props) => {
               onChange={(e) => setName(e.target.value)}
             />
             </div>
-
-          <div className="col-sm-12 mt-5">
+            < div className="row">
+          <div className="col-sm-12 md-6">
             <label>Edad</label>
             </div>
             <div>
+              </div>
             <input
             className="form-control"
               type="text"
@@ -118,11 +121,12 @@ const MedicalRecord = (props) => {
             />
             </div>
           
-
-          <div className="col-sm-12 mt-5">
+            < div className="row">
+          <div className="col-sm-12 md-6">
             <label>Peso</label>
             </div>
             <div>
+            </div>  
             <input
             className="form-control"
               type="text"
@@ -132,12 +136,12 @@ const MedicalRecord = (props) => {
             />
             </div>
           
-
-          <div className="col-sm-12 mt-5">
+          < div className="row">
+          <div className="col-sm-12 md-6">
             <label>Altura</label>
             </div>
             <div>
-            <select value={height} onChange={(e) => setHeight(e.target.value)}>
+            <select className="selectHeight" value={height} onChange={(e) => setHeight(e.target.value)}>
               <option value="select"></option>
               <option value="1,60m">1,60m</option>
               <option value="1,60m">1,65m</option>
@@ -146,11 +150,15 @@ const MedicalRecord = (props) => {
               <option value="1,90m">1,90m</option>
             </select>
             </div>
+            </div>
           
-
-          <div className="col-sm-12 mt-5">
+          < div className="row"></div>
+          <div className="col-sm-12 md-6">
             <label>Patología</label>
             </div>
+            <div>
+           </div> 
+
             <div>
             <input
             className="form-control"
@@ -159,13 +167,16 @@ const MedicalRecord = (props) => {
               value={pathology}
               onChange={(e) => setPathology(e.target.value)}
             />
-            </div>
+          </div>
 
          
-
-          <div className="col-sm-12 mt-5">
-            <label>Alergias</label>
+          < div className="row">
+          <div className="col-sm-12 md-6">
+            <label>Alérgias</label>
             </div>
+            </div>
+            
+
             <div>
             <input
               className="form-control"
@@ -178,9 +189,10 @@ const MedicalRecord = (props) => {
 
             
          
-
-          <div className="col-sm-12 mt-5">
+           < div className="row">
+          <div className="col-sm-12 md-6">
             <label>Medicamentos</label>
+            </div>
             </div>
 
             <div>
@@ -191,11 +203,14 @@ const MedicalRecord = (props) => {
               value={medicines}
               onChange={(e) => setMedicines(e.target.value)}
             />
-          </div>
+          </div> 
 
-          <div className="col-sm-12 mt-5">
+          < div className="row">
+          <div className="col-sm-12 md-6">
             <label>Tipo de sangre</label>
             </div>
+            </div>
+
             <div>
             <input
             className="form-control"
@@ -208,12 +223,13 @@ const MedicalRecord = (props) => {
 
             
           
-
-          <div className="col-sm-12 mt-5">
+         < div className="row">
+          <div className="col-sm-12 md-6">
             <label>Nota adicional</label>
             </div>
+            </div>
 
-            <div className="form-group col-md-6">
+            <div className="form-group col-ms-12">
             <input
             className="form-control"
               type="text"
